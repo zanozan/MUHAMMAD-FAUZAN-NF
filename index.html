@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Pemesanan Kamar Hotel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Hotel Sederhana</h1>
+        <nav>
+            <a href="#produk">Produk</a>
+            <a href="#harga">Daftar Harga</a>
+            <a href="#tentang">Tentang Kami</a>
+            <a href="#pesan">Pesan Kamar</a>
+        </nav>
+    </header>
+
+    <section id="produk">
+        <h2>Produk</h2>
+        <div class="produk-item">
+            <img src="standar.jpg" alt="Standar">
+            <p>Kamar Standar</p>
+        </div>
+        <div class="produk-item">
+            <img src="deluxe.jpg" alt="Deluxe">
+            <p>Kamar Deluxe</p>
+        </div>
+        <div class="produk-item">
+            <img src="family.jpg" alt="Family">
+            <p>Kamar Family</p>
+        </div>
+    </section>
+
+    <section id="harga">
+        <h2>Daftar Harga</h2>
+        <table>
+            <tr>
+                <th>Tipe Kamar</th>
+                <th>Harga per Malam</th>
+            </tr>
+            <tr>
+                <td>Standar</td>
+                <td>Rp 300,000</td>
+            </tr>
+            <tr>
+                <td>Deluxe</td>
+                <td>Rp 500,000</td>
+            </tr>
+            <tr>
+                <td>Family</td>
+                <td>Rp 800,000</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="tentang">
+        <h2>Tentang Kami</h2>
+        <p>Alamat: Jalan Merdeka No. 123, Jakarta</p>
+        <p>Telepon: +62 812 3456 7890</p>
+        <p>Email: info@hotelsederhana.com</p>
+    </section>
+
+    <section id="pesan">
+        <h2>Pesan Kamar</h2>
+        <form id="form-pemesanan" action="insert.php" method="post">
+            <label for="nama">Nama Pemesan:</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <label for="gender">Jenis Kelamin:</label>
+            <select id="gender" name="gender" required>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+
+            <label for="identitas">Nomor Identitas:</label>
+            <input type="text" id="identitas" name="identitas" maxlength="16" pattern="\d{16}" required>
+
+            <label for="tipe">Tipe Kamar:</label>
+            <select id="tipe" name="tipe" required>
+                <option value="300000">Standar</option>
+                <option value="500000">Deluxe</option>
+                <option value="800000">Family</option>
+            </select>
+
+            <label for="tanggal">Tanggal Pesan:</label>
+            <input type="date" id="tanggal" name="tanggal" required min="">
+
+            <label for="durasi">Durasi Menginap (malam):</label>
+            <input type="number" id="durasi" name="durasi" min="1" required>
+
+            <label>
+                <input type="checkbox" id="breakfast" name="breakfast">
+                Termasuk Breakfast (+Rp 80,000)
+            </label>
+
+            <label for="total">Total Bayar:</label>
+            <input type="text" id="total_tampil" name="total_tampil" readonly>
+            <input type="hidden" id="total" name="total">
+
+            <button type="button" onclick="hitungTotal()">Hitung Total</button>
+            <button type="submit">Pesan</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+<script>
+    // Mengatur nilai minimal untuk input tanggal menjadi tanggal hari ini
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("tanggal").setAttribute("min", today);
+</script>
+</body>
+</html>
